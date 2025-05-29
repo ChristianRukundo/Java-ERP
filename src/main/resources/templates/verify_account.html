@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verification - Government of Rwanda ERP</title>
+    <style>
+        body {
+            background-color: #f7f7f7; /* Light grey background for the whole email */
+            color: #333333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font stack */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto; /* Add some top/bottom margin */
+            padding: 30px; /* Increased padding */
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            border-radius: 10px; /* Slightly more rounded corners */
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .logo {
+            width: 150px; /* Slightly smaller logo for better balance */
+            display: block;
+            margin: 0 auto 20px auto; /* Centered with bottom margin */
+        }
+        .title {
+            font-size: 28px; /* Slightly larger title */
+            font-weight: 600; /* Medium bold */
+            color: #1a5276; /* A deeper, professional blue */
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .content {
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+        .otp-section {
+            text-align: center;
+            margin-bottom: 30px; /* More space around OTP */
+            background-color: #eaf3fa; /* Lighter blue background for OTP */
+            padding: 30px; /* More padding inside OTP box */
+            border-radius: 8px;
+            border: 1px dashed #a7d0ec; /* Dashed border for a modern touch */
+        }
+        .otp-digit {
+            display: inline-block;
+            padding: 10px 15px; /* Larger padding for digits */
+            color: #1a5276; /* Consistent blue for OTP */
+            font-size: 32px; /* Larger OTP digits */
+            font-weight: bold;
+            letter-spacing: 5px; /* Spacing between digits for readability */
+            border-radius: 5px;
+            background-color: #ffffff; /* White background for each digit */
+            margin: 0 5px; /* Space between digits */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .button-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px; /* Larger button */
+            color: #ffffff;
+            background-color: #2e86c1; /* A more vibrant, but professional blue */
+            border-radius: 50px; /* More pronounced rounded corners */
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow for button */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+        .button:hover {
+            background-color: #1a5276; /* Darker blue on hover */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px; /* More space above footer */
+            color: #888888;
+            font-size: 13px;
+        }
+        .note {
+            font-size: 14px;
+            color: #666666;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="https://nom.rra.gov.rw/onlineapp/dist/img/logo.png"
+             alt="Government of Rwanda" class="logo">
+        <h1 class="title">Account Verification Request</h1>
+    </div>
+
+    <div class="content">
+        <p>Dear <span th:text="${name}" style="font-weight: bold;">User</span>,</p>
+        <p>We've received a request to verify your account with the Government of Rwanda ERP system. To complete your verification, please use the following One-Time Password (OTP):</p>
+    </div>
+
+    <div class="otp-section">
+        <span class="otp-digit" th:text="${otp[0]}">1</span>
+        <span class="otp-digit" th:text="${otp[1]}">2</span>
+        <span class="otp-digit" th:text="${otp[2]}">3</span>
+        <span class="otp-digit" th:text="${otp[3]}">4</span>
+        <span class="otp-digit" th:text="${otp[4]}">5</span>
+        <span class="otp-digit" th:text="${otp[5]}">6</span>
+    </div>
+
+    <div class="button-section">
+        <a href="http://localhost:9094/auth/verify-account" class="button">
+            Verify Account
+        </a>
+    </div>
+
+    <p class="note">
+        This code is valid for a limited time. If you did not request this verification, please disregard this email.
+    </p>
+</div>
+
+<div class="footer">
+    &copy; Government of Rwanda 2025. All rights reserved.<br>
+    Integrated Situation Management System
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><title>Salary Credited</title>
+    <style> /* Basic styles from previous emails */
+    body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#f4f7f6;color:#333}
+    .email-container{max-width:600px;margin:20px auto;background-color:#fff;padding:20px;border-radius:8px;border:1px solid #ddd;}
+    .highlight{font-weight:bold;color:#005691;}
+    .amount{font-weight:bold;color:#28a745;} /* Green for credited amount */
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <p>Dear <span th:text="${firstName}" class="highlight">Employee</span>,</p>
+    <p>
+        Your salary for <span th:text="${monthYear}" class="highlight">MONTH/YEAR</span>
+        from <span th:text="${institutionName}" class="highlight">INSTITUTION</span>
+        amounting to <span th:text="${netAmount} + ' RWF'" class="amount">AMOUNT</span>
+        has been credited to your account (Employee ID: <span th:text="${employeeIdentifier}" class="highlight">EMPLOYEE ID</span>) successfully.
+    </p>
+    <p>Thank you.</p>
+    <p>Regards,<br/>The <span th:text="${companyName}">Company</span> Payroll Team</p>
+</div>
+</body>
+</html>

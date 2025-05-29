@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Confirmation</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #f4f7f6; font-family: Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .email-container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow: hidden; }
+        .email-header { background-color: #d9534f; /* Reddish for withdrawal/debit */ color: #ffffff; padding: 20px; text-align: center; }
+        .email-header h1 { margin: 0; font-size: 24px; }
+        .email-body { padding: 25px; color: #333333; line-height: 1.6; }
+        .email-body p { margin: 0 0 15px 0; }
+        .transaction-details { margin-top: 20px; margin-bottom: 20px; border-collapse: collapse; width: 100%; }
+        .transaction-details th, .transaction-details td { border: 1px solid #dddddd; text-align: left; padding: 10px; font-size: 15px; }
+        .transaction-details th { background-color: #f2f2f2; font-weight: bold; color: #333; }
+        .highlight { color: #d9534f; font-weight: bold; }
+        .footer { background-color: #f4f7f6; color: #777777; padding: 20px; text-align: center; font-size: 12px; border-top: 1px solid #e0e0e0;}
+        .company-name { font-weight: bold; color: #005691; }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="email-header">
+        <h1>Withdrawal Confirmation</h1>
+    </div>
+    <div class="email-body">
+        <p>Dear <span th:text="${customerName}" class="highlight">Customer</span>,</p>
+        <p>This email confirms that a withdrawal from your account has been successfully processed.</p>
+
+        <table class="transaction-details">
+            <tr>
+                <th>Transaction Type:</th>
+                <td th:text="${transactionTypeU}">WITHDRAWAL</td>
+            </tr>
+            <tr>
+                <th>Account Number:</th>
+                <td th:text="${accountNumberU}" class="highlight">XXXXXXXXXX</td>
+            </tr>
+            <tr>
+                <th>Amount Withdrawn:</th>
+                <td th:text="${#numbers.formatDecimal(amountU, 1, 'COMMA', 2, 'POINT')} + ' RWF'" class="highlight">0.00 RWF</td>
+            </tr>
+            <tr>
+                <th>Date & Time:</th>
+                <td th:text="${#temporals.format(T(java.time.LocalDateTime).now(), 'dd-MMM-yyyy HH:mm:ss')}">Transaction Date</td>
+            </tr>
+            <tr>
+                <th>New Account Balance:</th>
+                <td th:text="${#numbers.formatDecimal(newBalanceU, 1, 'COMMA', 2, 'POINT')} + ' RWF'">0.00 RWF</td>
+            </tr>
+        </table>
+
+        <p>Thank you for banking with <span th:text="${companyName}" class="company-name">National Bank of Rwanda</span>.</p>
+        <p>If you did not authorize this transaction or have any questions, please contact our customer support immediately.</p>
+    </div>
+    <div class="footer">
+        © <span th:text="${#dates.year(#dates.createNow())}">2024</span> <span th:text="${companyName}" class="company-name">National Bank of Rwanda</span>. All rights reserved.
+    </div>
+</div>
+</body>
+</html>
